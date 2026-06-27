@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}{{ action }} entry - Employee Ledger{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <p class="eyebrow">Ledger</p>
+    <h1>{{ action }} employee entry</h1>
+  </div>
+  <a href="{{ url_for('dashboard') }}" class="btn-ghost">Back to records</a>
+</div>
+
+<div class="form-card">
+  <form method="POST" novalidate>
+    <div class="field-grid">
+      <div class="field">
+        <label for="name">Full name</label>
+        <input type="text" id="name" name="name" required value="{{ employee.name if employee else '' }}">
+      </div>
+      <div class="field">
+        <label for="department">Department</label>
+        <input type="text" id="department" name="department" required value="{{ employee.department if employee else '' }}">
+      </div>
+      <div class="field">
+        <label for="position">Position</label>
+        <input type="text" id="position" name="position" required value="{{ employee.position if employee else '' }}">
+      </div>
+      <div class="field">
+        <label for="salary">Monthly salary (&#8377;)</label>
+        <input type="number" id="salary" name="salary" min="0" step="1" required value="{{ employee.salary if employee else '' }}">
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required value="{{ employee.email if employee else '' }}">
+      </div>
+      <div class="field">
+        <label for="date_joined">Date joined</label>
+        <input type="date" id="date_joined" name="date_joined" required value="{{ employee.date_joined if employee else '' }}">
+      </div>
+    </div>
+    <button type="submit" class="btn-primary">{{ action }} entry</button>
+  </form>
+</div>
+{% endblock %}

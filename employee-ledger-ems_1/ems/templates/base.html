@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Employee Management System{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  {% if session.get('user') %}
+  <header class="topbar">
+    <a href="{{ url_for('dashboard') }}" class="topbar-brand">
+      <span class="ledger-mark">EMS</span>
+      <span class="brand-text">Employee&nbsp;Ledger</span>
+    </a>
+    <nav class="topbar-nav">
+      <a href="{{ url_for('dashboard') }}">Records</a>
+      <a href="{{ url_for('export_employees') }}">Export .xlsx</a>
+    </nav>
+    <div class="topbar-user">
+      <span class="user-pill">{{ session.get('user') }}</span>
+      <a href="{{ url_for('logout') }}" class="btn-ghost">Log out</a>
+    </div>
+  </header>
+  {% endif %}
+
+  <main class="page">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      <div class="flash-stack">
+        {% for category, message in messages %}
+          {% if category == 'stamp' %}
+          <div class="stamp-banner">
+            <div class="stamp">
+              <span class="stamp-ring"></span>
+              <span class="stamp-text">VERIFIED</span>
+            </div>
+            <p class="stamp-message">{{ message }}</p>
+          </div>
+          {% else %}
+          <div class="flash flash-{{ category }}">{{ message }}</div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+</body>
+</html>

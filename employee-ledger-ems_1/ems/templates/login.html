@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Log in - Employee Ledger{% endblock %}
+{% block content %}
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <div class="ledger-mark large">EMS</div>
+    <h1>Sign in to the ledger</h1>
+    <p class="auth-sub">Use the account you signed up with. We'll email a login confirmation to that address.</p>
+
+    <form method="POST" novalidate>
+      <div class="field">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required autofocus autocomplete="username">
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn-primary full">Log in</button>
+    </form>
+
+    <p class="auth-switch">New here? <a href="{{ url_for('signup') }}">Create an account</a></p>
+  </div>
+</div>
+{% endblock %}

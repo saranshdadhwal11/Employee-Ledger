@@ -1,0 +1,349 @@
+/* ---------------------------------------------------------------------
+   Employee Ledger — design tokens
+--------------------------------------------------------------------- */
+:root {
+  --paper: #F4F6F1;
+  --surface: #FFFFFF;
+  --ink: #1C2620;
+  --ink-soft: #5C6B5E;
+  --rule: #DCE3D5;
+  --accent: #2F6B4F;
+  --accent-dark: #1F4D38;
+  --accent-soft: #E4EEE7;
+  --stamp: #B23B3B;
+  --warn: #9A6B16;
+  --warn-soft: #FBF1DD;
+  --danger: #B23B3B;
+  --danger-soft: #FBEAEA;
+  --info: #3A5A78;
+  --info-soft: #E8EEF3;
+  --success-soft: #E4EEE7;
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(28,38,32,0.04), 0 8px 24px rgba(28,38,32,0.06);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "IBM Plex Sans", -apple-system, Segoe UI, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.mono { font-family: "IBM Plex Mono", monospace; letter-spacing: 0.01em; }
+
+h1 {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin: 0 0 4px;
+  color: var(--ink);
+}
+
+a { color: var(--accent-dark); text-decoration: none; }
+
+/* ---------------------------------------------------------------------
+   Topbar
+--------------------------------------------------------------------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 14px 28px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--rule);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.ledger-mark {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 600;
+  background: var(--accent-dark);
+  color: #fff;
+  border-radius: 6px;
+  padding: 3px 7px;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+.ledger-mark.large {
+  display: inline-block;
+  font-size: 1rem;
+  padding: 6px 12px;
+  margin-bottom: 18px;
+}
+
+.brand-text { font-size: 0.95rem; }
+
+.topbar-nav { display: flex; gap: 22px; flex: 1; }
+.topbar-nav a { color: var(--ink-soft); font-size: 0.9rem; font-weight: 500; }
+.topbar-nav a:hover { color: var(--accent-dark); }
+
+.topbar-user { display: flex; align-items: center; gap: 14px; }
+
+.user-pill {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.8rem;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+/* ---------------------------------------------------------------------
+   Page shell
+--------------------------------------------------------------------- */
+.page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 36px 24px 60px;
+}
+
+.page-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 20px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.eyebrow {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin: 0 0 4px;
+}
+
+/* ---------------------------------------------------------------------
+   Buttons & forms
+--------------------------------------------------------------------- */
+.btn-primary {
+  display: inline-block;
+  background: var(--accent-dark);
+  color: #fff;
+  border: none;
+  padding: 11px 18px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+.btn-primary:hover { background: var(--accent); }
+.btn-primary.full { width: 100%; margin-top: 6px; }
+
+.btn-ghost {
+  display: inline-block;
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1px solid var(--rule);
+  padding: 9px 14px;
+  border-radius: var(--radius);
+  font-weight: 500;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent-dark); }
+.btn-ghost.small { padding: 5px 10px; font-size: 0.8rem; }
+.btn-ghost.danger:hover { border-color: var(--danger); color: var(--danger); }
+
+.inline-form { display: inline; }
+
+.field { margin-bottom: 16px; display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: 0.82rem; font-weight: 600; color: var(--ink-soft); }
+.field input {
+  padding: 10px 12px;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: var(--paper);
+  color: var(--ink);
+}
+.field input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 18px;
+}
+@media (max-width: 620px) {
+  .field-grid { grid-template-columns: 1fr; }
+}
+
+/* ---------------------------------------------------------------------
+   Auth pages
+--------------------------------------------------------------------- */
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  padding-top: 8vh;
+}
+
+.auth-card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 36px 34px;
+  width: 100%;
+  max-width: 380px;
+}
+
+.auth-sub { color: var(--ink-soft); font-size: 0.88rem; margin: 4px 0 22px; }
+.auth-switch { text-align: center; font-size: 0.88rem; color: var(--ink-soft); margin-top: 18px; }
+
+/* ---------------------------------------------------------------------
+   Ledger table
+--------------------------------------------------------------------- */
+.ledger-card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.ledger-table { width: 100%; border-collapse: collapse; }
+.ledger-table th {
+  text-align: left;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-soft);
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+}
+.ledger-table td {
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 280px;
+}
+.ledger-table tr:last-child td { border-bottom: none; }
+.ledger-table .num { text-align: right; }
+.ledger-table th.num { text-align: right; }
+.ledger-table .small { font-size: 0.82rem; color: var(--ink-soft); }
+.ledger-table .actions { text-align: right; white-space: nowrap; }
+
+.form-card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 28px 30px;
+}
+
+.empty-state { padding: 50px 20px; text-align: center; color: var(--ink-soft); }
+.empty-state p { margin-bottom: 16px; }
+
+/* ---------------------------------------------------------------------
+   Flash messages
+--------------------------------------------------------------------- */
+.flash-stack { margin-bottom: 22px; display: flex; flex-direction: column; gap: 10px; }
+
+.flash {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  border: 1px solid transparent;
+}
+.flash-success { background: var(--success-soft); color: var(--accent-dark); border-color: var(--accent-soft); }
+.flash-danger  { background: var(--danger-soft);  color: var(--danger);      border-color: #F0D2D2; }
+.flash-warning { background: var(--warn-soft);    color: var(--warn);        border-color: #F0E2BE; }
+.flash-info    { background: var(--info-soft);    color: var(--info);       border-color: #D7E2EA; }
+
+/* The signature moment: a rubber-stamp confirmation for a successful login */
+.stamp-banner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 1px dashed var(--rule);
+  border-radius: 10px;
+}
+
+.stamp {
+  position: relative;
+  width: 78px;
+  height: 78px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-9deg) scale(1.5);
+  opacity: 0;
+  animation: stamp-press 0.45s 0.1s cubic-bezier(.2,1.4,.4,1) forwards;
+}
+
+.stamp-ring {
+  position: absolute;
+  inset: 0;
+  border: 3px solid var(--stamp);
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 4px rgba(178,59,59,0.08);
+}
+.stamp-ring::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid var(--stamp);
+  border-radius: 50%;
+}
+
+.stamp-text {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 600;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: var(--stamp);
+  text-align: center;
+}
+
+.stamp-message { color: var(--ink-soft); font-size: 0.9rem; margin: 0; }
+
+@keyframes stamp-press {
+  0%   { opacity: 0; transform: rotate(-9deg) scale(1.6); }
+  60%  { opacity: 1; transform: rotate(-9deg) scale(0.92); }
+  100% { opacity: 1; transform: rotate(-9deg) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp { animation: none; opacity: 1; transform: rotate(-9deg) scale(1); }
+}
+
+/* ---------------------------------------------------------------------
+   Responsive
+--------------------------------------------------------------------- */
+@media (max-width: 720px) {
+  .topbar { flex-wrap: wrap; gap: 12px; padding: 12px 18px; }
+  .topbar-nav { order: 3; width: 100%; }
+  .page { padding: 24px 14px 50px; }
+  .ledger-table { display: block; overflow-x: auto; white-space: nowrap; }
+}
